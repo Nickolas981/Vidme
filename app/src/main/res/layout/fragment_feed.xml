@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.nickolas.vidme.FeedFragment">
+    tools:context="com.example.nickolas.vidme.FeedFragment"
+    android:background="@color/colorPrimary">
 
     <TextView
         android:layout_width="match_parent"
