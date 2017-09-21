@@ -1,7 +1,6 @@
 package com.example.nickolas.vidme;
 
 import android.app.Activity;
-import android.media.Image;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -12,7 +11,8 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import retrofit2.Retrofit;
+import com.example.nickolas.vidme.utils.InternetConnectivityUtil;
+import com.example.nickolas.vidme.widgets.adapters.PagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -63,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        if(!InternetConnectivityUtil.isConnected(this))
+            Toast.makeText(activity, "No Internet connection", Toast.LENGTH_SHORT).show();
     }
 
     private void showPopupMenu(View v) {

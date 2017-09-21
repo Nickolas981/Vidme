@@ -1,11 +1,13 @@
 package com.example.nickolas.vidme;
 
 /**
- * Created by Nickolas on 20.09.2017.
+ * Created by Nickolas on 21.09.2017.
  */
 
-public class DataManager {
-    private static final String API_LOGIN_URL = "https://api.vid.me/auth/create",
+public class Constants {
+
+    public static final String API_URL = "https://api.vid.me",
             API_OAUTH_CLIENTID = "kUQILZ7u1rWzCUKl7MTXbO0NCgIfUOy3",
             API_OAUTH_CLIENTSECRET = "j6o54XLwcrqZsCrHFLXwKKZJRZQEXUYk1HlZiH6P";
+
 }

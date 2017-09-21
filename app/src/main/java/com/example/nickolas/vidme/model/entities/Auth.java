@@ -1,4 +1,4 @@
-package com.example.nickolas.vidme;
+package com.example.nickolas.vidme.model.entities;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

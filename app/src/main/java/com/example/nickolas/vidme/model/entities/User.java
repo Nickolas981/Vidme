@@ -1,4 +1,4 @@
-package com.example.nickolas.vidme;
+package com.example.nickolas.vidme.model.entities;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -9,14 +9,31 @@ import com.google.gson.annotations.SerializedName;
 public class User {
 
     @SerializedName("status")
-    @Expose
+    @Expose(serialize = false, deserialize = false)
+//    @Optional
     private Boolean status;
     @SerializedName("auth")
-    @Expose
+    @Expose(serialize = false, deserialize = false)
     private Auth auth;
     @SerializedName("user")
-    @Expose
+    @Expose(serialize = false, deserialize = false)
     private User_ user;
+
+    @SerializedName("code")
+    @Expose(serialize = false, deserialize = false)
+    private String code;
+
+    @SerializedName("error")
+    @Expose(serialize = false, deserialize = false)
+    private String error;
+
+    public String getCode() {
+        return code;
+    }
+
+    public String getError() {
+        return error;
+    }
 
     public Boolean getStatus() {
         return status;
