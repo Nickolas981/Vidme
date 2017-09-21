@@ -1,5 +1,6 @@
 package com.example.nickolas.vidme;
 
+import android.app.Activity;
 import android.media.Image;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -11,13 +12,17 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import retrofit2.Retrofit;
+
 public class MainActivity extends AppCompatActivity {
+
+    public  static Activity activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        activity = this;
 //        View decorView = getWindow().getDecorView();
 //        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
 //        decorView.setSystemUiVisibility(uiOptions);
@@ -75,5 +80,10 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
         popupMenu.show();
+    }
+
+
+    private void res(){
+
     }
 }
