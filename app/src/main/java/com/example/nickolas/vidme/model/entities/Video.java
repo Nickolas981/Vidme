@@ -7,14 +7,7 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class Video {
-    //    let id: String
-//    let url: String
-//    let title: String
-//    let description: String
-//    let likesCount: Int
-//    let thumbnailUrl: String
-//    let height: Double
-//    let width: Double
+
     @SerializedName("video_id")
     private String id;
     @SerializedName("complete_url")
@@ -32,4 +25,36 @@ public class Video {
     @SerializedName("likes_count")
     private int likesCount;
 
+
+    public String getId() {
+        return id;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public String getThumbnailUrl() {
+        return thumbnailUrl;
+    }
+
+    public double getHeight() {
+        return height;
+    }
+
+    public double getWidth() {
+        return width;
+    }
+
+    public int getLikesCount() {
+        return likesCount;
+    }
 }
