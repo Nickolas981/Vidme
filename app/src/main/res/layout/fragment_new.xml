@@ -5,8 +5,16 @@
     tools:context="com.example.nickolas.vidme.fragments.NewFragment"
     android:background="@color/colorPrimaryDark">
 
-    <android.support.v7.widget.RecyclerView
+    <com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout
+        android:id="@+id/swipe_refresh_new_videos"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"
+        android:dividerHeight="0dp">
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout>
+
 
 </FrameLayout>
