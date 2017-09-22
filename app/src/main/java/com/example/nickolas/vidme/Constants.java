@@ -1,8 +1,5 @@
 package com.example.nickolas.vidme;
 
-/**
- * Created by Nickolas on 21.09.2017.
- */
 
 public class Constants {
 

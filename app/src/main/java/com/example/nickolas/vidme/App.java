@@ -4,9 +4,6 @@ import android.app.Application;
 
 import com.example.nickolas.vidme.model.entities.User;
 
-/**
- * Created by Nickolas on 20.09.2017.
- */
 
 public class App extends Application {
 
