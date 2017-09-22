@@ -20,5 +20,8 @@ public interface VidmeApi {
     Observable<ResponseBody> featuredVideo(@Query("limit") int limit, @Query("offset") int offset);
 
     @GET("/videos/new")
-    Observable<ResponseBody> newVideo(@Query("limit") int limit);
+    Observable<ResponseBody> newVideo(@Query("limit") int limit, @Query("offset") int offset);
+
+    @GET("/videos/feed")
+    Observable<ResponseBody> feedVideo(@Query("limit") int limit, @Query("offset") int offset);
 }

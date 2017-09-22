@@ -1,9 +1,5 @@
 package com.example.nickolas.vidme.di.scopes;
 
-/**
- *
- * Constants variables for modules and providers.
- */
 
 public class Scopes {
 

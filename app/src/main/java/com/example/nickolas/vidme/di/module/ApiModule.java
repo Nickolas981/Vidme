@@ -1,9 +1,13 @@
 package com.example.nickolas.vidme.di.module;
 
-import com.example.nickolas.vidme.api.VidmeApi;
 import com.example.nickolas.vidme.Constants;
+import com.example.nickolas.vidme.api.VidmeApi;
 import com.example.nickolas.vidme.model.remote.FeaturedVideosDataSource;
+import com.example.nickolas.vidme.model.remote.FeedVideosDataSource;
 import com.example.nickolas.vidme.model.remote.IFeaturedVideosDataSource;
+import com.example.nickolas.vidme.model.remote.IFeedVideosDataSource;
+import com.example.nickolas.vidme.model.remote.INewVideosDataSource;
+import com.example.nickolas.vidme.model.remote.NewVideosDataSource;
 
 import javax.inject.Singleton;
 
@@ -12,9 +16,6 @@ import dagger.Provides;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-/**
- * Created by Nickolas on 21.09.2017.
- */
 
 @Module
 public class ApiModule {
@@ -32,6 +33,18 @@ public class ApiModule {
     @Singleton
     public IFeaturedVideosDataSource provideFeaturedVideosDataSource(Retrofit retrofit) {
         return new FeaturedVideosDataSource(retrofit.create(VidmeApi.class));
+    }
+
+    @Provides
+    @Singleton
+    public IFeedVideosDataSource provideFeedVideoDataSource(Retrofit retrofit) {
+        return new FeedVideosDataSource(retrofit.create(VidmeApi.class));
+    }
+
+    @Provides
+    @Singleton
+    public INewVideosDataSource provideNewVideoDataSource(Retrofit retrofit) {
+        return new NewVideosDataSource(retrofit.create(VidmeApi.class));
     }
 
 }

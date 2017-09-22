@@ -5,9 +5,6 @@ import java.util.concurrent.TimeUnit;
 import rx.Observable;
 import rx.functions.Func1;
 
-/**
- * Created by Nickolas on 21.09.2017.
- */
 
 public class RxRetryWithDelay implements
         Func1<Observable<? extends Throwable>, Observable<?>> {

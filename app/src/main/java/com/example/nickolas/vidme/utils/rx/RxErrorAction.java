@@ -7,9 +7,7 @@ import com.example.nickolas.vidme.R;
 
 import rx.functions.Action1;
 
-/**
- * Created by Nickolas on 21.09.2017.
- */
+
 public class RxErrorAction implements Action1<Throwable> {
 
     private final Context context;

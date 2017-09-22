@@ -6,9 +6,7 @@ import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 
 
-/**
- * Created by Калян on 28.03.2017.
- */
+
 
 public class BasePresenter<T extends BaseView> {
 
