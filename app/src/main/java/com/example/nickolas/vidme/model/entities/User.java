@@ -3,9 +3,7 @@ package com.example.nickolas.vidme.model.entities;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by Nickolas on 20.09.2017.
- */
+
 public class User {
 
     @SerializedName("status")
