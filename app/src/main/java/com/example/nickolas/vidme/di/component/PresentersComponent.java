@@ -5,10 +5,10 @@ import com.example.nickolas.vidme.di.scopes.Scope;
 import com.example.nickolas.vidme.di.scopes.Scopes;
 import com.example.nickolas.vidme.fragments.FeaturedFragment;
 import com.example.nickolas.vidme.fragments.FeedFragment;
+import com.example.nickolas.vidme.fragments.LogInFragment;
 import com.example.nickolas.vidme.fragments.NewFragment;
 
 import dagger.Component;
-
 
 @Scope(Scopes.VIEW)
 @Component(
@@ -18,7 +18,11 @@ import dagger.Component;
 public interface PresentersComponent {
 
     void inject(FeaturedFragment featuredFragment);
+
     void inject(FeedFragment feedFragment);
+
     void inject(NewFragment newFragment);
+
+    void inject(LogInFragment logInFragment);
 
 }
