@@ -8,9 +8,10 @@ android {
     buildToolsVersion "25.0.3"
     defaultConfig {
 
-//        jackOptions {
-//            enabled true;
-//        }
+
+
+        // Enabling multidex support.
+        multiDexEnabled true
         applicationId "com.example.nickolas.vidme"
         minSdkVersion 21
         targetSdkVersion 25
@@ -28,6 +29,8 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+
 }
 
 retrolambda {
@@ -44,16 +47,20 @@ dependencies {
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:support-v4:25.3.1'
+    //retrofit
     compile 'com.squareup.retrofit2:retrofit:2.0.0'
     compile 'com.squareup.retrofit2:converter-gson:2.0.0'
     compile 'com.squareup.retrofit2:converter-scalars:2.0.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+
     // rx
     compile 'io.reactivex:rxandroid:1.2.1'
     compile 'io.reactivex:rxjava:1.1.6'
+    compile 'com.jakewharton.rxbinding:rxbinding:0.4.0'
     // dagger
     compile 'com.google.dagger:dagger:2.0.2'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.0.2'
-// butter knife
+    // butter knife
     compile 'com.jakewharton:butterknife:8.6.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     //slidr
@@ -61,4 +68,20 @@ dependencies {
     // Swipy
     compile 'com.github.omadahealth:swipy:1.2.3@aar'
     testCompile 'junit:junit:4.12'
+    //Cardview
+    compile 'com.android.support:cardview-v7:25.3.1'
+    //multidex
+    compile 'com.android.support:multidex:1.0.1'
+    //Picasso
+//    compile 'com.squareup.picasso:picasso:2.5.2'
+
+    //glide
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.android.support:support-v4:25.3.0'
+
+    //ExoPlayer
+    compile 'com.google.android.exoplayer:exoplayer:r2.5.1'
+    compile 'com.google.android.exoplayer:exoplayer-dash:r2.5.1'
+    compile 'com.google.android.exoplayer:exoplayer-hls:r2.5.1'
+    compile 'com.devbrackets.android:exomedia:4.0.3'
 }

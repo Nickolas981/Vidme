@@ -16,7 +16,7 @@ public class FeedVideosDataSource implements IFeedVideosDataSource {
     }
 
     @Override
-    public Observable<ResponseBody> getVideos(int limit, int offset) {
-        return api.feedVideo(limit, offset);
+    public Observable<ResponseBody> getVideos(int limit, int offset, String token) {
+        return api.feedVideo(limit, offset, token);
     }
 }

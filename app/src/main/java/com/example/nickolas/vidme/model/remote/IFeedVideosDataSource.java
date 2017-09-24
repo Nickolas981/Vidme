@@ -7,6 +7,6 @@ import rx.Observable;
 
 public interface IFeedVideosDataSource {
 
-    Observable<ResponseBody> getVideos(int limit, int offset);
+    Observable<ResponseBody> getVideos(int limit, int offset, String token);
 
 }

@@ -2,19 +2,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.nickolas.vidme.fragments.NewFragment"
-    android:background="@color/colorPrimaryDark">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#e6e9ee"
+    tools:context="com.example.nickolas.vidme.fragments.NewFragment">
 
-    <com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout
-        android:id="@+id/swipe_refresh_new_videos"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:dividerHeight="0dp">
+        android:layout_height="wrap_content">
 
-        <android.support.v7.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout>
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="?android:progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+
+        <com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout
+            android:id="@+id/swipe_refresh_new_videos"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:dividerHeight="0dp"
+            app:srl_direction="top">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/new_video_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout>
+
+    </FrameLayout>
+
 
 
 </FrameLayout>

@@ -1,11 +1,16 @@
 package com.example.nickolas.vidme.presenters;
 
+import com.example.nickolas.vidme.fragments.FeaturedFragment;
 import com.example.nickolas.vidme.model.entities.Video;
 import com.example.nickolas.vidme.model.remote.IFeaturedVideosDataSource;
+import com.example.nickolas.vidme.utils.rx.RxErrorAction;
 import com.example.nickolas.vidme.utils.rx.RxRetryWithDelay;
 import com.example.nickolas.vidme.views.FeaturedVideosView;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONException;
@@ -35,22 +40,20 @@ public class FeaturedVideosPresenter extends BasePresenter<FeaturedVideosView> {
                     List<Video> videos = null;
                     try {
                         res = responseBody.string();
-                        JSONObject r = new JSONObject(res);
-//                        JSONArray ra = r.getJSONArray("videos");
-                        JsonElement array = (JsonElement) r.get("videos");
-                        Type listType = new TypeToken<List<String>>() {
-                        }.getType();
-                        videos = new Gson().fromJson(array, listType);
-                    } catch (IOException | JSONException e) {
+                        JsonParser parser = new JsonParser();
+                        JsonObject r = parser.parse(res).getAsJsonObject();
+                        Type listType = new TypeToken<List<Video>>() {}.getType();
+                        videos = new Gson().fromJson((JsonElement) r.get("videos"),listType);
+                        System.out.println("asdasdasdasdasdasdasdasdass");
+                    } catch (IOException e) {
                         e.printStackTrace();
                     }
-
                     return videos;
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getView())
-
+                .subscribe(getView()::showVideos, new RxErrorAction(getView().getContext()))
+        );
     }
 
 }

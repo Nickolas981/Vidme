@@ -1,30 +1,30 @@
 package com.example.nickolas.vidme;
 
-import android.app.Application;
+import android.support.multidex.MultiDexApplication;
 
+import com.example.nickolas.vidme.di.component.AppComponent;
+import com.example.nickolas.vidme.di.component.DaggerAppComponent;
+import com.example.nickolas.vidme.di.module.ApiModule;
+import com.example.nickolas.vidme.di.module.AppModule;
 import com.example.nickolas.vidme.model.entities.User;
 
 
-public class App extends Application {
-
-
-//    private static VidmeApi vidmeApi;
-//    private Retrofit retrofit;
+public class App extends MultiDexApplication {
 
     public static User user;
+    private AppComponent appComponent;
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-//        retrofit = new Retrofit.Builder().baseUrl(API_URL)
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .addConverterFactory(ScalarsConverterFactory.create())
-//                .build();
-//
-//        vidmeApi = retrofit.create(VidmeApi.class);
+    public App() {
+        super();
+
+        appComponent = DaggerAppComponent.builder()
+                .apiModule(new ApiModule())
+                .appModule(new AppModule(this))
+                .build();
     }
 
-//    public static VidmeApi getVidmeApi() {
-//        return vidmeApi;
-//    }
+    public AppComponent appComponent() {
+        return appComponent;
+    }
+
 }

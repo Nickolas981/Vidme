@@ -10,10 +10,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.nickolas.vidme.fragments.FeaturedFragment;
-import com.example.nickolas.vidme.fragments.LogInFrament;
-import com.example.nickolas.vidme.fragments.NewFragment;
+import com.example.nickolas.vidme.App;
 import com.example.nickolas.vidme.R;
+import com.example.nickolas.vidme.fragments.FeaturedFragment;
+import com.example.nickolas.vidme.fragments.FeedFragment;
+import com.example.nickolas.vidme.fragments.LogInFragment;
+import com.example.nickolas.vidme.fragments.NewFragment;
 
 
 public class PagerAdapter extends FragmentStatePagerAdapter {
@@ -27,17 +29,19 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                FeaturedFragment tab1 = FeaturedFragment.newInstance();
-                return tab1;
+                return FeaturedFragment.newInstance();
             case 1:
-                NewFragment tab2 = NewFragment.newInstance();
-                return tab2;
+                return NewFragment.newInstance();
             case 2:
-                LogInFrament tab3 = LogInFrament.newInstance();
-                return tab3;
+                return App.user == null ? LogInFragment.newInstance() : FeedFragment.newInstance();
             default:
                 return null;
         }
+    }
+
+    @Override
+    public int getItemPosition(Object object) {
+       return POSITION_NONE;
     }
 
     @Override
@@ -45,12 +49,7 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
         return 3;
     }
 
-    /**
-     * Created by Nickolas on 20.09.2017.
-     */
-
     public static class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
-
 
 
         @Override
@@ -76,7 +75,7 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
             return 0;
         }
 
-        protected static class ViewHolder extends RecyclerView.ViewHolder  {
+        protected static class ViewHolder extends RecyclerView.ViewHolder {
             TextView title, likes;
             ImageView thumbnail;
             View item;
