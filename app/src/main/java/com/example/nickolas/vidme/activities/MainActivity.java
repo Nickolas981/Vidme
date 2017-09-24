@@ -1,37 +1,51 @@
-package com.example.nickolas.vidme;
+package com.example.nickolas.vidme.activities;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.PopupMenu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.nickolas.vidme.App;
+import com.example.nickolas.vidme.R;
+import com.example.nickolas.vidme.model.entities.User;
 import com.example.nickolas.vidme.utils.InternetConnectivityUtil;
 import com.example.nickolas.vidme.widgets.adapters.PagerAdapter;
+import com.google.gson.Gson;
 
 public class MainActivity extends AppCompatActivity {
 
-    public  static Activity activity;
+    public static Activity activity;
+    public static PagerAdapter adapter;
+    public static ViewPager viewPager;
+
+    public static ImageButton imageButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         activity = this;
-//        View decorView = getWindow().getDecorView();
-//        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
-//        decorView.setSystemUiVisibility(uiOptions);
+
+        SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
+        String user = sharedPreferences.getString("user", null);
+        App.user = user != null ? new Gson().fromJson(user, User.class) : null;
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("Featured"));
         tabLayout.addTab(tabLayout.newTab().setText("New"));
         tabLayout.addTab(tabLayout.newTab().setText("Feed"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+
+        imageButton = (ImageButton) findViewById(R.id.log_out_button);
+        imageButton.setVisibility(App.user == null ? View.GONE : View.VISIBLE);
 
 
         ImageButton imageButton = (ImageButton) findViewById(R.id.log_out_button);
@@ -42,8 +56,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-        final PagerAdapter adapter = new PagerAdapter
+        viewPager = (ViewPager) findViewById(R.id.pager);
+        adapter = new PagerAdapter
                 (getSupportFragmentManager());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
@@ -63,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        if(!InternetConnectivityUtil.isConnected(this))
+        if (!InternetConnectivityUtil.isConnected(this))
             Toast.makeText(activity, "No Internet connection", Toast.LENGTH_SHORT).show();
     }
 
@@ -75,9 +89,11 @@ public class MainActivity extends AppCompatActivity {
                 .setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        Toast.makeText(getApplicationContext(),
-                                "Вы выбрали PopupMenu 1",
-                                Toast.LENGTH_SHORT).show();
+                        App.user = null;
+                        adapter.notifyDataSetChanged();
+                        imageButton.setVisibility(View.GONE);
+                        SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
+                        sharedPreferences.edit().clear().apply();
                         return true;
                     }
                 });
@@ -85,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void res(){
+    private void res() {
 
     }
 }
