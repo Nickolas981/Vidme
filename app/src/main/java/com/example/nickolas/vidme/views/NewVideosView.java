@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface NewVideosView extends BaseView {
 
-        void showVideos(List<Video> videos);
+    void showVideos(List<Video> videos);
 
 }

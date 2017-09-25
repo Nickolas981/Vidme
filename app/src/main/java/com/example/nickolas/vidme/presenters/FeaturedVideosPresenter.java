@@ -1,20 +1,15 @@
 package com.example.nickolas.vidme.presenters;
 
-import com.example.nickolas.vidme.fragments.FeaturedFragment;
 import com.example.nickolas.vidme.model.entities.Video;
 import com.example.nickolas.vidme.model.remote.IFeaturedVideosDataSource;
 import com.example.nickolas.vidme.utils.rx.RxErrorAction;
 import com.example.nickolas.vidme.utils.rx.RxRetryWithDelay;
 import com.example.nickolas.vidme.views.FeaturedVideosView;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -42,8 +37,9 @@ public class FeaturedVideosPresenter extends BasePresenter<FeaturedVideosView> {
                         res = responseBody.string();
                         JsonParser parser = new JsonParser();
                         JsonObject r = parser.parse(res).getAsJsonObject();
-                        Type listType = new TypeToken<List<Video>>() {}.getType();
-                        videos = new Gson().fromJson((JsonElement) r.get("videos"),listType);
+                        Type listType = new TypeToken<List<Video>>() {
+                        }.getType();
+                        videos = new Gson().fromJson((JsonElement) r.get("videos"), listType);
                         System.out.println("asdasdasdasdasdasdasdasdass");
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -55,5 +51,4 @@ public class FeaturedVideosPresenter extends BasePresenter<FeaturedVideosView> {
                 .subscribe(getView()::showVideos, new RxErrorAction(getView().getContext()))
         );
     }
-
 }

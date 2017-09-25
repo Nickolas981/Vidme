@@ -44,42 +44,8 @@ public class VideoActivity extends AppCompatActivity {
 
         videoPath = intent.getStringExtra("url");
 
-//        progressDialog = ProgressDialog.show(VideoActivity.this, "", "Buffering video...", true);
-//        progressDialog.setCancelable(true);
         playVideo();
-
-//        PlayVideo();
-
     }
-//    private void PlayVideo()
-//    {
-//        try
-//        {
-//            getWindow().setFormat(PixelFormat.TRANSLUCENT);
-//            MediaController mediaController = new MediaController(VideoActivity.this);
-//            mediaController.setAnchorView(videoView);
-//
-//            Uri video = Uri.parse(videoPath );
-//            videoView.setMediaController(mediaController);
-//            videoView.setVideoURI(video);
-//            videoView.requestFocus();
-//            videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener()
-//            {
-//                public void onPrepared(MediaPlayer mp)
-//                {
-//                    progressDialog.dismiss();
-//                    videoView.start();
-//                }
-//            });
-//        }
-//        catch(Exception e)
-//        {
-//            progressDialog.dismiss();
-//            System.out.println("Video Play Error :"+e.toString());
-//            finish();
-//        }
-//
-//    }
 
     void playVideo() {
         Handler mainHandler = new Handler();
@@ -93,7 +59,6 @@ public class VideoActivity extends AppCompatActivity {
                 ExoPlayerFactory.newSimpleInstance(this, trackSelector);
 
         videoView.setPlayer(player);
-
 
         DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(this, Util.getUserAgent(this, "Vidme"));
         HlsDataSourceFactory hlsDataSourceFactory = new DefaultHlsDataSourceFactory(dataSourceFactory);
@@ -110,33 +75,3 @@ public class VideoActivity extends AppCompatActivity {
         player.stop();
     }
 }
-//    private VideoView videoView;
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_video);
-//        Slidr.attach(this);
-//        videoView = (VideoView) findViewById(R.id.videoView);
-//
-//        Intent intent = getIntent();
-//
-////        MediaSource dashSource = new DashSource(context, uri, new SimpleRateBasedAdaptationLogic());
-////        videoView.setVideoURI(Uri.parse("http://www.androidbegin.com/tutorial/AndroidCommercial.3gp"));
-//        videoView.setVideoURI(Uri.parse("http://24x7dash-i.akamaihd.net/dash/live/900080/elemental/dash.mpd"));
-//        videoView.requestFocus();
-//        videoView.start();
-//
-////        videoView.setVideoURI(Uri.parse(intent.getStringExtra("url")));
-////        videoView.start();
-////        videoView.setOnPreparedListener(new OnPreparedListener() {
-////            @Override
-////            public void onPrepared() {
-////                videoView.start();
-////            }
-////        });
-//
-//
-//    }
-//
-

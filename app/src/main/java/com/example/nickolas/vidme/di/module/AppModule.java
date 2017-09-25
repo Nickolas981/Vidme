@@ -11,7 +11,6 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 
-
 @Module
 public final class AppModule {
 
@@ -38,5 +37,4 @@ public final class AppModule {
     Executor provideExecutor() {
         return Executors.newCachedThreadPool();
     }
-
 }

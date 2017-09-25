@@ -7,7 +7,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
@@ -18,7 +17,6 @@ import com.example.nickolas.vidme.di.component.AppComponent;
 import com.example.nickolas.vidme.di.component.DaggerPresentersComponent;
 import com.example.nickolas.vidme.di.module.PresentersModule;
 import com.example.nickolas.vidme.model.entities.Video;
-import com.example.nickolas.vidme.presenters.FeaturedVideosPresenter;
 import com.example.nickolas.vidme.presenters.FeedVideosPresenter;
 import com.example.nickolas.vidme.views.FeedVideosView;
 import com.example.nickolas.vidme.widgets.adapters.EndlessRecyclerViewScrollListener;
@@ -34,7 +32,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class FeedFragment extends Fragment implements FeedVideosView, OnClickListener {
+public class FeedFragment extends Fragment implements FeedVideosView {
 
     @BindView(R.id.feed_video_container)
     RecyclerView videoContainer;
@@ -54,6 +52,7 @@ public class FeedFragment extends Fragment implements FeedVideosView, OnClickLis
     public static FeedFragment newInstance() {
         return new FeedFragment();
     }
+
     public AppComponent getAppComponent() {
         return ((App) getActivity().getApplication()).appComponent();
     }
@@ -66,7 +65,7 @@ public class FeedFragment extends Fragment implements FeedVideosView, OnClickLis
                 .presentersModule(new PresentersModule())
                 .build()
                 .inject(this);
-        limit = 5;
+        limit = 10;
         offset = 0;
         presenter.setView(this);
     }
@@ -97,18 +96,18 @@ public class FeedFragment extends Fragment implements FeedVideosView, OnClickLis
         listener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
-                offset += 5;
+                offset += limit;
                 presenter.getVideos(limit, offset, App.user.getAuth().getToken());
             }
         };
+
         videoContainer.setOnScrollListener(listener);
-
         videoContainer.setAdapter(videoListAdapter);
-
         startLoad();
         presenter.getVideos(limit, offset, App.user.getAuth().getToken());
         return v;
     }
+
     public void startLoad() {
         swipyRefreshLayout.setVisibility(View.GONE);
         progressBar.setVisibility(View.VISIBLE);
@@ -125,9 +124,5 @@ public class FeedFragment extends Fragment implements FeedVideosView, OnClickLis
         videoListAdapter.addVideos(videos);
         videoListAdapter.notifyDataSetChanged();
         finishLoad();
-    }
-    @Override
-    public void onClick(View v) {
-
     }
 }

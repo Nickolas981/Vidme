@@ -21,7 +21,6 @@ public class Video {
     @SerializedName("likes_count")
     private int likesCount;
 
-
     public String getId() {
         return id;
     }

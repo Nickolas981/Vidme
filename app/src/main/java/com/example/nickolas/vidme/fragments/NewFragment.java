@@ -30,7 +30,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class NewFragment extends Fragment implements NewVideosView, View.OnClickListener{
+public class NewFragment extends Fragment implements NewVideosView {
 
     @BindView(R.id.new_video_container)
     RecyclerView videoContainer;
@@ -39,7 +39,6 @@ public class NewFragment extends Fragment implements NewVideosView, View.OnClick
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
 
-
     public VideoListAdapter videoListAdapter;
     public EndlessRecyclerViewScrollListener listener;
 
@@ -47,6 +46,7 @@ public class NewFragment extends Fragment implements NewVideosView, View.OnClick
     NewVideosPresenter presenter;
 
     int limit, offset;
+
     public static NewFragment newInstance() {
         return new NewFragment();
     }
@@ -63,12 +63,10 @@ public class NewFragment extends Fragment implements NewVideosView, View.OnClick
                 .presentersModule(new PresentersModule())
                 .build()
                 .inject(this);
-        limit = 5;
+        limit = 10;
         offset = 0;
         presenter.setView(this);
     }
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -87,7 +85,7 @@ public class NewFragment extends Fragment implements NewVideosView, View.OnClick
         listener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
-                offset += 5;
+                offset += limit;
                 presenter.getVideos(limit, offset);
             }
         };
@@ -117,11 +115,5 @@ public class NewFragment extends Fragment implements NewVideosView, View.OnClick
         videoListAdapter.addVideos(videos);
         videoListAdapter.notifyDataSetChanged();
         finishLoad();
-    }
-
-
-    @Override
-    public void onClick(View v) {
-
     }
 }

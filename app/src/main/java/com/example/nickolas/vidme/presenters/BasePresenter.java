@@ -5,9 +5,6 @@ import com.example.nickolas.vidme.views.BaseView;
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 
-
-
-
 public class BasePresenter<T extends BaseView> {
 
     private T view;
@@ -30,5 +27,4 @@ public class BasePresenter<T extends BaseView> {
         compositeSubscription.add(subscription);
         return subscription;
     }
-
 }

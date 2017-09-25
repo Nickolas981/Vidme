@@ -5,8 +5,6 @@ import com.example.nickolas.vidme.api.VidmeApi;
 import okhttp3.ResponseBody;
 import rx.Observable;
 
-
-
 public class NewVideosDataSource implements INewVideosDataSource {
 
     private VidmeApi api;

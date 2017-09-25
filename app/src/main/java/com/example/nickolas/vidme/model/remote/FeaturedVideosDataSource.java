@@ -17,5 +17,4 @@ public class FeaturedVideosDataSource implements IFeaturedVideosDataSource {
     public Observable<ResponseBody> getVideos(int limit, int offset) {
         return api.featuredVideo(limit, offset);
     }
-
 }

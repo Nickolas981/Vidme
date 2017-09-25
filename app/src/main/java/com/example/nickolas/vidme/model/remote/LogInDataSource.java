@@ -5,10 +5,6 @@ import com.example.nickolas.vidme.model.entities.User;
 
 import rx.Observable;
 
-/**
- * Created by Nickolas on 23.09.2017.
- */
-
 public class LogInDataSource implements ILogInDataSource {
 
     private VidmeApi api;

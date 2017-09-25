@@ -99,9 +99,4 @@ public class MainActivity extends AppCompatActivity {
                 });
         popupMenu.show();
     }
-
-
-    private void res() {
-
-    }
 }

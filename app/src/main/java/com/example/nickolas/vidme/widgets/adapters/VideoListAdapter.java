@@ -2,7 +2,6 @@ package com.example.nickolas.vidme.widgets.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,7 +55,7 @@ public class VideoListAdapter extends RecyclerView.Adapter<VideoListAdapter.View
 
         Glide.with(context).load(videos.get(position).getThumbnailUrl()).into(holder.videoThumbnail);
 
-       holder.videoThumbnail.setOnClickListener(new View.OnClickListener() {
+        holder.videoThumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.activity, VideoActivity.class);

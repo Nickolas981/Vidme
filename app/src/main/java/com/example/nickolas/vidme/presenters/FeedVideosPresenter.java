@@ -11,9 +11,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
@@ -40,8 +37,9 @@ public class FeedVideosPresenter extends BasePresenter<FeedVideosView> {
                         res = responseBody.string();
                         JsonParser parser = new JsonParser();
                         JsonObject r = parser.parse(res).getAsJsonObject();
-                        Type listType = new TypeToken<List<Video>>() {}.getType();
-                        videos = new Gson().fromJson((JsonElement) r.get("videos"),listType);
+                        Type listType = new TypeToken<List<Video>>() {
+                        }.getType();
+                        videos = new Gson().fromJson((JsonElement) r.get("videos"), listType);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -51,6 +49,5 @@ public class FeedVideosPresenter extends BasePresenter<FeedVideosView> {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getView()::showVideos, new RxErrorAction(getView().getContext()))
         );
-
     }
 }

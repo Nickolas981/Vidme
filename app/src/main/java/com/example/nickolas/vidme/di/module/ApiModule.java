@@ -20,7 +20,6 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
-
 @Module
 public class ApiModule {
 
@@ -58,5 +57,4 @@ public class ApiModule {
     public ILogInDataSource provideLogInDataSource(Retrofit retrofit) {
         return new LogInDataSource(retrofit.create(VidmeApi.class));
     }
-
 }

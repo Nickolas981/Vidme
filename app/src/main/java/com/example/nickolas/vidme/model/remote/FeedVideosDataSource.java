@@ -6,7 +6,6 @@ import okhttp3.ResponseBody;
 import rx.Observable;
 
 
-
 public class FeedVideosDataSource implements IFeedVideosDataSource {
 
     private VidmeApi api;

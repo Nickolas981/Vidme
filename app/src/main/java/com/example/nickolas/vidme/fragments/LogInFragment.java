@@ -96,7 +96,7 @@ public class LogInFragment extends Fragment implements LogInView {
     public void createAuth(User user) {
         fisnishAuth();
         App.user = user;
-        synchronized (MainActivity.adapter){
+        synchronized (MainActivity.adapter) {
             MainActivity.adapter.notifyDataSetChanged();
         }
         Gson gson = new Gson();

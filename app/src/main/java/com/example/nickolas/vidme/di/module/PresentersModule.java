@@ -40,5 +40,4 @@ public class PresentersModule {
     public LogInPresenter provideLogInPresenter(ILogInDataSource logInDataSource) {
         return new LogInPresenter(logInDataSource);
     }
-
 }

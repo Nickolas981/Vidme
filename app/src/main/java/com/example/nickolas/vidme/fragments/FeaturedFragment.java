@@ -31,10 +31,8 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-//import com.example.nickolas.vidme.di.component.DaggerPresentersComponent;
 
-
-public class FeaturedFragment extends Fragment implements FeaturedVideosView, View.OnClickListener {
+public class FeaturedFragment extends Fragment implements FeaturedVideosView {
 
     @BindView(R.id.featured_video_container)
     RecyclerView videoContainer;
@@ -68,7 +66,7 @@ public class FeaturedFragment extends Fragment implements FeaturedVideosView, Vi
                 .presentersModule(new PresentersModule())
                 .build()
                 .inject(this);
-        limit = 5;
+        limit = 10;
         offset = 0;
         presenter.setView(this);
     }
@@ -96,14 +94,14 @@ public class FeaturedFragment extends Fragment implements FeaturedVideosView, Vi
             }
         });
 
-
         listener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
-                offset += 5;
+                offset += limit;
                 presenter.getVideos(limit, offset);
             }
         };
+
         videoContainer.setOnScrollListener(listener);
         videoContainer.setAdapter(videoListAdapter);
 
@@ -126,15 +124,7 @@ public class FeaturedFragment extends Fragment implements FeaturedVideosView, Vi
     @Override
     public void showVideos(List<Video> videos) {
         videoListAdapter.addVideos(videos);
-//        videoContainer.setAdapter(new VideoListAdapter(videos, MainActivity.activity));
         videoListAdapter.notifyDataSetChanged();
         finishLoad();
     }
-
-    @Override
-    public void onClick(View v) {
-
-    }
-
-
 }

@@ -4,7 +4,7 @@
     style=""
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/asd"
+    android:background="@drawable/backgroung"
     android:paddingEnd="15dp"
     android:paddingStart="15dp"
     tools:context="com.example.nickolas.vidme.activities.MainActivity">
