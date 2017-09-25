@@ -12,6 +12,7 @@ import android.widget.ProgressBar;
 
 import com.example.nickolas.vidme.App;
 import com.example.nickolas.vidme.R;
+import com.example.nickolas.vidme.activities.MainActivity;
 import com.example.nickolas.vidme.di.component.AppComponent;
 import com.example.nickolas.vidme.di.component.DaggerPresentersComponent;
 import com.example.nickolas.vidme.di.module.PresentersModule;
@@ -21,6 +22,7 @@ import com.example.nickolas.vidme.views.NewVideosView;
 import com.example.nickolas.vidme.widgets.listeners.EndlessRecyclerViewScrollListener;
 import com.example.nickolas.vidme.widgets.adapters.VideoListAdapter;
 import com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout;
+import com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
 
 import java.util.List;
 
@@ -89,6 +91,16 @@ public class NewFragment extends Fragment implements NewVideosView {
                 presenter.getVideos(limit, offset);
             }
         };
+
+        swipyRefreshLayout.setOnRefreshListener(new SwipyRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh(SwipyRefreshLayoutDirection direction) {
+                offset = 0;
+                videoListAdapter = new VideoListAdapter(MainActivity.activity);
+                videoContainer.setAdapter(videoListAdapter);
+                presenter.getVideos(limit, offset);
+            }
+        });
         videoContainer.setOnScrollListener(listener);
 
         videoContainer.setAdapter(videoListAdapter);
