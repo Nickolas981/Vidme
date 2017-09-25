@@ -19,7 +19,7 @@ import com.example.nickolas.vidme.di.module.PresentersModule;
 import com.example.nickolas.vidme.model.entities.Video;
 import com.example.nickolas.vidme.presenters.FeaturedVideosPresenter;
 import com.example.nickolas.vidme.views.FeaturedVideosView;
-import com.example.nickolas.vidme.widgets.adapters.EndlessRecyclerViewScrollListener;
+import com.example.nickolas.vidme.widgets.listeners.EndlessRecyclerViewScrollListener;
 import com.example.nickolas.vidme.widgets.adapters.VideoListAdapter;
 import com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout;
 import com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;

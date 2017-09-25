@@ -40,7 +40,6 @@ public class FeaturedVideosPresenter extends BasePresenter<FeaturedVideosView> {
                         Type listType = new TypeToken<List<Video>>() {
                         }.getType();
                         videos = new Gson().fromJson((JsonElement) r.get("videos"), listType);
-                        System.out.println("asdasdasdasdasdasdasdasdass");
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
